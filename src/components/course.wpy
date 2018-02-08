@@ -1,0 +1,59 @@
+<template lang="pug">
+    view(class='course')
+        view.course-cover
+            image(src="{{cover}}" mode="widthFix" style="width:100%;")/
+        navigator(url="{{url}}")
+        view.course-info
+            view.course-title {{title}}
+            view.course-desc {{desc}} 
+            view.course-status 募集中
+</template>
+<script>
+    import wepy from 'wepy';
+    export default class course extends wepy.component {
+        $name = 'course';
+        props = ['id', 'title', 'desc', 'cover'];
+        computed = {
+            url(){
+                return '/book/' + this.id;
+            }
+        };
+    }
+</script>
+<style lang="less">
+    @import "../style/base/fn.less";
+
+    .course{
+        display: block;
+        margin: 0 20rpx;
+        padding: 20rpx 0;
+        border-bottom: 1rpx solid @weuiLineColorLight;
+    }
+    .course-cover{
+        float: left;
+        width: 200rpx;
+        height: 300rpx;
+        background: @weuiBgColorDefault;
+    }
+    .course-info{
+        height: 300rpx;
+        position: relative;
+        margin-left: 220rpx;
+    }
+    .course-title{
+        font-weight: bold;
+        font-size: 40rpx;
+    }
+    .course-desc{
+        font-size: 30rpx;
+        height: 130rpx;
+        line-height: 1.5;
+        .ellipsisLn(3);
+    }
+    .course-status{
+        font-size: 30rpx;
+        position: absolute;
+        right: 0;
+        bottom:0;
+    }
+</style>

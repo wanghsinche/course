@@ -16,6 +16,9 @@ module.exports = {
   compilers: {
     less: {
     },
+    pug: {
+
+    },
     babel: {
       sourceMap: true,
       presets: [

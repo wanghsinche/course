@@ -1,0 +1,41 @@
+<template lang="pug">
+    view.container
+        repeat(wx:for="{{courseList}}" wx:key="{{index}}")
+            course(:title="item.title" :desc="item.desc" :id="item.id" :cover="item.cover")
+</template>
+
+<script>
+    import wepy from 'wepy';
+    import course from '../components/course';
+    import {fetchCourseList} from '../utils/api';
+    export default class index extends wepy.page {
+        components = {course};
+        data = {
+            courseList:[]
+        };
+        computed = {
+            now () { return +new Date(); },
+            now1 () {return 1}
+        };
+        async onLoad() {
+            await this.fetchList();
+            console.log('Hello World');
+        }
+        async fetchList(keyword) {
+            if (typeof keyword === 'undefined') {
+                this.courseList = await fetchCourseList();
+                console.log(this.courseList);
+            }
+        }
+        sleep(time) {
+            return new Promise((resolve, reject) => setTimeout(() => resolve, time * 1000));
+        }
+    }
+</script>
+
+<style lang="less">
+    @color: #4D926F;
+    .userinfo {
+        color: @color;
+    }
+</style>
