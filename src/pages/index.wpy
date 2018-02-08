@@ -1,7 +1,7 @@
 <template lang="pug">
     view.container
-        repeat(wx:for="{{courseList}}" wx:key="{{index}}")
-            course(:title="item.title" :desc="item.desc" :id="item.id" :cover="item.cover")
+        repeat(for="{{courseList}}" key="index" index="index" item="item")
+            course(:title="item.title" :desc="item.desc" :id="item.id" :cover="item.cover" :url="item.url")
 </template>
 
 <script>
@@ -15,7 +15,6 @@
         };
         computed = {
             now () { return +new Date(); },
-            now1 () {return 1}
         };
         async onLoad() {
             await this.fetchList();

@@ -2,8 +2,7 @@
     view(class='course')
         view.course-cover
             image(src="{{cover}}" mode="widthFix" style="width:100%;")/
-        navigator(url="{{url}}")
-        view.course-info
+        navigator.course-info(url="{{url}}")
             view.course-title {{title}}
             view.course-desc {{desc}} 
             view.course-status 募集中
@@ -12,12 +11,8 @@
     import wepy from 'wepy';
     export default class course extends wepy.component {
         $name = 'course';
-        props = ['id', 'title', 'desc', 'cover'];
-        computed = {
-            url(){
-                return '/book/' + this.id;
-            }
-        };
+        props = ['id', 'title', 'desc', 'cover', 'url'];
+        
     }
 </script>
 <style lang="less">
@@ -36,6 +31,7 @@
         background: @weuiBgColorDefault;
     }
     .course-info{
+        display: block;
         height: 300rpx;
         position: relative;
         margin-left: 220rpx;
