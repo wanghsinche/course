@@ -31,7 +31,7 @@
             <view class="weui-panel">
                 <view class="weui-panel__hd">{{title}}的短评</view>
                 <view class="weui-panel__bd">
-                    <view class="weui-media-box weui-media-box_text" wx:for="{{comments}}">
+                    <view class="weui-media-box weui-media-box_text" wx:for="{{comments}}" wx:key="{{index}}">
                         <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
                         <view class="weui-media-box__desc">{{item.desc}}</view>
                         <view class="weui-media-box__info">

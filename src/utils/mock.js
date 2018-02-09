@@ -47,5 +47,9 @@ export default {
                 "author": "Q"
             }
         ]
+    },
+    "center": {
+        "avatar": "https://img3.doubanio.com/icon/ul44809699-4.jpg",
+        "name": "somebody"
     }
 }

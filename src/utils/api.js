@@ -5,3 +5,6 @@ export const fetchCourseList = async function(page) {
 export const getDetail = async function(id) {
 	return Promise.resolve(data.detail);
 }
+export const getCenter = async function() {
+    return Promise.resolve(data.center);
+}
