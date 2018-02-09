@@ -1,36 +1,76 @@
-<template lang="pug">
-    view.container
-        text.title {{title}}
-        text.desc {{desc}}
+<template>
+    <view class="page">
+        <view class="page__hd">
+            <image src="{{cover}}"/>
+            <view class="page__title">{{title}}</view>
+            <view class="page__desc">
+                {{desc}}
+            </view>
+        </view>
+        <view class="page__bd">
+            <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__hd">加入这个课程的人也喜欢</view>
+                <view class="weui-panel__bd">
+                    <navigator url="/pages/detail?id={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{promotions}}" wx:key="{{index}}">
+                        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                            <image class="weui-media-box__thumb" src="{{item.cover}}" />
+                        </view>
+                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                            <view class="weui-media-box__title">{{item.title}}</view>
+                            <view class="weui-media-box__desc">{{item.desc}}</view>
+                        </view>
+                    </navigator>
+                </view>
+                <view class="weui-panel__ft">
+                    <view class="weui-cell weui-cell_access weui-cell_link">
+                        <view class="weui-cell__bd">查看更多</view>
+                        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                    </view>
+                </view>
+            </view>
+            <view class="weui-panel">
+                <view class="weui-panel__hd">{{title}}的短评</view>
+                <view class="weui-panel__bd">
+                    <view class="weui-media-box weui-media-box_text" wx:for="{{comments}}">
+                        <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+                        <view class="weui-media-box__desc">{{item.desc}}</view>
+                        <view class="weui-media-box__info">
+                            <view class="weui-media-box__info__meta">{{item.author}}</view>
+                            <view class="weui-media-box__info__meta">{{item.time}}</view>
+                            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
 </template>
 <script>
     import wepy from 'wepy';
     import {getDetail} from '../utils/api';
-    export default class index extends wepy.page {
+    export default class detail extends wepy.page {
         data = {
             cover: '',
             title: 'loading',
-            desc: 'loading'
+            desc: 'loading',
+            promotions: [],
+            comments: []
         };
         computed = {
-            
         };
         async onLoad(option) {
             console.log(option);
-            let data = await getDetail(1);
+            let data = await getDetail(option.id);
             this.title = data.title;
             this.desc = data.desc;
             this.cover = data.cover;
+            this.promotions = data.promotions;
+            this.comments = data.comments;
         }
-        
     }
+
 </script>
 <style lang="less">
      @import "../style/base/fn.less";
-    .title{
-        font-size: 40rpx;
-    }
-    .desc{
-        font-size: 30rpx;
-    }
+    
 </style>

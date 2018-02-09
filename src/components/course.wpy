@@ -2,7 +2,7 @@
     view(class='course')
         view.course-cover
             image(src="{{cover}}" mode="widthFix" style="width:100%;")/
-        navigator.course-info(url="{{url}}")
+        navigator.course-info(url="/pages/detail?id={{id}}")
             view.course-title {{title}}
             view.course-desc {{desc}} 
             view.course-status 募集中
@@ -11,7 +11,7 @@
     import wepy from 'wepy';
     export default class course extends wepy.component {
         $name = 'course';
-        props = ['id', 'title', 'desc', 'cover', 'url'];
+        props = ['id', 'title', 'desc', 'cover'];
         
     }
 </script>

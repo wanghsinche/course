@@ -1,7 +1,7 @@
 <template lang="pug">
     view.container
         repeat(for="{{courseList}}" key="index" index="index" item="item")
-            course(:title="item.title" :desc="item.desc" :id="item.id" :cover="item.cover" :url="item.url")
+            course(:title="item.title" :desc="item.desc" :id="item.id" :cover="item.cover")
 </template>
 
 <script>
